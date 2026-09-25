@@ -21,8 +21,7 @@ function ProductList({ onHomeClick }) {
         }));
       };
       
-    const totalQuantity = useSelector(state => state.cart?.items?.reduce((total, item) => total + item.quantity, 0) || 0);
-    
+      const totalQuantity = useSelector(state => (state.cart && Array.isArray(state.cart)) ? state.cart.reduce((total, item) => total + item.quantity, 0) : ((state.cart?.items && Array.isArray(state.cart.items)) ? state.cart.items.reduce((total, item) => total + item.quantity, 0) : 0));    
     const plantsArray = [
         {
             category: "Air Purifying Plants",
